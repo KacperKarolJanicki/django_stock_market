@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact — Audi Showroom{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Book a Test Drive</h1>
+        <p>Tell us which Audi you'd like to experience — we'll be in touch within one business day.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-grid">
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            <div class="field">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="field">
+                <label for="model">Model of interest</label>
+                <select id="model" name="model">
+                    <option>Audi A4</option>
+                    <option>Audi A6</option>
+                    <option>Audi Q5</option>
+                    <option>Audi Q7</option>
+                    <option>Audi e-tron GT</option>
+                    <option>Audi RS 7</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Request</button>
+        </form>
+
+        <aside class="contact-info">
+            <h3>Visit Us</h3>
+            <p>123 Ingolstadt Avenue<br>Showroom City, 10001</p>
+            <h3>Call</h3>
+            <p>+1 (555) 012-3456</p>
+            <h3>Hours</h3>
+            <p>Mon–Fri: 9:00–19:00<br>Sat: 10:00–17:00<br>Sun: Closed</p>
+        </aside>
+    </div>
+</section>
+{% endblock %}

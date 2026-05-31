@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Audi Showroom — Vorsprung durch Technik{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <span class="eyebrow">New 2026 Lineup</span>
+        <h1>Engineered for the Road Ahead</h1>
+        <p>From the all-electric e-tron GT to the track-bred RS 7 — find the Audi that moves you.</p>
+        <div class="hero-actions">
+            <a href="{% url 'models' %}" class="btn btn-primary">Explore Models</a>
+            <a href="{% url 'contact' %}" class="btn btn-ghost">Book a Test Drive</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Featured Models</h2>
+        <div class="card-grid">
+            {% for car in featured_cars %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <article class="car-card">
+                <div class="car-card-image" style="background-image:url('{{ car.image_url }}');"></div>
+                <div class="car-card-body">
+                    <h3>{{ car.name }}</h3>
+                    <p class="car-price">From ${{ car.base_price }}</p>
+                    <a href="{% url 'current_model' car.name car.no_background_image car.base_price%}" class="btn btn-outline">View Details</a>
+                </div>
+            </article>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="container split">
+        <div>
+            <span class="eyebrow light">Quattro Heritage</span>
+            <h2>Performance in every drivetrain.</h2>
+            <p>Legendary quattro all-wheel drive, refined for the electric era. Every Audi is built to deliver confidence in any condition.</p>
+            <a href="{% url 'about' %}" class="btn btn-primary">Our Story</a>
+        </div>
+        <img src="{% static 'images/rs7.png'%}">
+    </div>
+</section>
+{% endblock %}

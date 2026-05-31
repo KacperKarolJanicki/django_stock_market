@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Configure your Audi{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1 class="section-title">Configure your {{model}}</h1>
+        <section class="container split">
+        <div>
+        <label class="sln-field-label">
+            <form method="post" action="">
+            {% csrf_token %}
+            Type:
+            <select class="sln-field" name="type"></select>
+            <br></br>
+            Engine: 
+            <select class="sln-field" name="engine">
+            {% for engine in engines %}
+            <option>{{engine}}</option>
+            {% endfor %}
+            </select>
+            <br></br>
+            Equipment: <select class="sln-field" name="equipment"></select>
+            <br></br>
+            Color: <select class="sln-field" name="color">
+            {% for color in colors %}
+            <option value="{{color.color}}">{{color.color}}</option>
+            {% endfor %}
+            </select>
+            <br></br>
+            <button type="submit" class="btn btn-primary">Sprawdź</button>
+            <br></br>
+            </form>
+        </label>
+        <h1>Total price: {{price}} $</h1>
+        </div>
+        <div><img src="/static/images/{{image}}", width="400"></div>
+    </section>
+</section>
+{% endblock %}

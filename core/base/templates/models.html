@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Models — Audi Showroom{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>The Audi Lineup</h1>
+        <p>Sedans, SUVs, electric and RS performance — explore every model.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for car in cars %}
+            <article class="car-card">
+                <div class="car-card-image" style="background-image:url('{{ car.image_url }}');"></div>
+                <div class="car-card-body">
+                    <h3>{{ car.name }}</h3>
+                    <p class="car-price">From ${{ car.base_price }}</p>
+                    <a href="#" class="btn btn-outline">Configure</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Audi Showroom{% endblock %}</title>
+    <meta name="description" content="{% block description %}Discover the full Audi lineup — sedans, SUVs, e-tron and RS performance models.{% endblock %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="{% url 'home' %}" class="logo" aria-label="Audi home">
+                <svg viewBox="0 0 120 30" class="logo-rings" aria-hidden="true">
+                    <g fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="15" cy="15" r="13"/>
+                        <circle cx="40" cy="15" r="13"/>
+                        <circle cx="65" cy="15" r="13"/>
+                        <circle cx="90" cy="15" r="13"/>
+                    </g>
+                </svg>
+            </a>
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'models' %}">Models</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="{% url 'contact' %}" class="btn btn-primary">Book a Test Drive</a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Audi Showroom</h4>
+                <p>Vorsprung durch Technik.</p>
+            </div>
+            <div>
+                <h5>Explore</h5>
+                <ul>
+                    <li><a href="{% url 'models' %}">All Models</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Visit</h5>
+                <p>123 Ingolstadt Avenue<br>Open Mon–Sat, 9:00–19:00</p>
+            </div>
+        </div>
+        <div class="container copyright">
+            <small>&copy; {% now "Y" %} Audi Showroom. All rights reserved.</small>
+        </div>
+    </footer>
+</body>
+</html>
