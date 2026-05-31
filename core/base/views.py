@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 
-current_model = None #created a global variable to define current cofigure model of our car
-
 def index(request):
     featured_cars = Car.objects.all()
     global current_model
 
     if request.method == "POST":
-        current_model = request.POST.get("model")
         return redirect("current_model")
     return render(request, "home.html", {"featured_cars":featured_cars})
 
