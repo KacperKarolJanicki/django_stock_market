@@ -11,9 +11,6 @@
         <label class="sln-field-label">
             <form method="post" action="">
             {% csrf_token %}
-            Type:
-            <select class="sln-field" name="type"></select>
-            <br></br>
             Engine: 
             <select class="sln-field" name="engine">
             {% for engine in engines %}
@@ -21,7 +18,11 @@
             {% endfor %}
             </select>
             <br></br>
-            Equipment: <select class="sln-field" name="equipment"></select>
+            Equipment: <select class="sln-field" name="equipment">
+               {% for eq in equipment %}
+               <option>{{eq.equipment}}</option>
+               {% endfor %} 
+            </select>
             <br></br>
             Color: <select class="sln-field" name="color">
             {% for color in colors %}
@@ -29,13 +30,18 @@
             {% endfor %}
             </select>
             <br></br>
-            <button type="submit" class="btn btn-primary">Sprawdź</button>
+            <button type="submit" class="btn btn-primary">Check</button>
             <br></br>
             </form>
         </label>
         <h1>Total price: {{price}} $</h1>
         </div>
-        <div><img src="/static/images/{{image}}", width="400"></div>
+        <div>
+            <label class="sln-field-label">
+                Engine: {{current_engine}} | Equipment: {{current_equipment}} | Color: {{current_color}}
+            </label>
+            <img src="/static/images/{{image}}", width="400">
+        </div>
     </section>
 </section>
 {% endblock %}

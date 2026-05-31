@@ -7,18 +7,22 @@ class Color(models.Model):
         return self.color
 
 class Engine(models.Model):
-    engine = models.CharField()
+    engine = models.FloatField()
     
     def __str__(self):
-        return self.engine
+        return f"{self.engine}"
+    
+class Equipment(models.Model):
+    equipment = models.CharField()
+
+    def __str__(self):
+        return self.equipment
 
 class Car(models.Model):
     name = models.CharField(max_length=20)
-    engine = models.ManyToManyField(Engine)
     base_price = models.IntegerField()
     image_url = models.URLField()
     no_background_image = models.CharField()
-    color = models.ManyToManyField(Color)
 
     def __str__(self):
         return self.name

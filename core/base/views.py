@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 
-current_model = None
+current_model = None #created a global variable to define current cofigure model of our car
 
 def index(request):
     featured_cars = Car.objects.all()
@@ -15,26 +15,57 @@ def index(request):
 def configure_model(request, model_name, image, base_price):
     colors = Color.objects.all()
     engines = Engine.objects.all()
+    equipment = Equipment.objects.all()
+
     if request.method == "POST":
         color = request.POST.get("color")
+        engine = request.POST.get("engine")
+        current_equipment = request.POST.get("equipment")
+        chosen_opitons = [base_price]
+
+        # Cars colors changing. Remember that the name of image file
+        # must be the same like a model name value!
+
         if color == "Grey":
             image = f"{model_name} Grey.png"
         elif color=="Blue":
-            image = f"{model_name} Blue.jpg"
+            image = f"{model_name} Blue.png"
         elif color == "Yellow":
             image = f"{model_name} Yellow.png"
+
+        if current_equipment == "Premium +":
+            chosen_opitons.append(10000)
+        elif current_equipment == "S-line":
+            chosen_opitons.append(50000)
+        
+        if engine == "2.0":
+            chosen_opitons.append(5000)
+        elif engine == "2.5":
+            chosen_opitons.append(7500)
+        elif engine == "3.0":
+            chosen_opitons.append(10000)
+        
+        final_price = sum(chosen_opitons)
+
         return render(request, 
                   "current_model.html", 
                   {"model":model_name, 
                    "image":image, 
-                   "price":base_price, 
+                   "price":final_price, 
+                    "equipment": equipment, 
                    "colors":colors,
-                   "engines":engines})
+                   "engines":engines,
+                   "current_engine":engine,
+                   "current_color": color,
+                   "current_equipment": current_equipment
+                   })
+    
     return render(request, 
                   "current_model.html", 
                   {"model":model_name, 
                    "image":image, 
-                   "price":base_price, 
+                   "price":base_price,
+                   "equipment": equipment, 
                    "colors":colors,
                    "engines":engines})
 

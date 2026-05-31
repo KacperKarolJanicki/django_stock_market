@@ -19,7 +19,7 @@
                 <div class="car-card-body">
                     <h3>{{ car.name }}</h3>
                     <p class="car-price">From ${{ car.base_price }}</p>
-                    <a href="#" class="btn btn-outline">Configure</a>
+                    <a href="{% url 'current_model' car.name car.no_background_image car.base_price%}" class="btn btn-outline">Configure</a>
                 </div>
             </article>
             {% endfor %}
