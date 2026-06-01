@@ -24,11 +24,11 @@ def configure_model(request, model_name, image, base_price):
         # must be the same like a model name value!
 
         if color == "Grey":
-            image = f"{model_name} Grey.png"
+            image = f"{model_name} {color}.png"
         elif color=="Blue":
-            image = f"{model_name} Blue.png"
+            image = f"{model_name} {color}.png"
         elif color == "Yellow":
-            image = f"{model_name} Yellow.png"
+            image = f"{model_name} {color}.png"
 
         if current_equipment == "Premium +":
             chosen_opitons.append(10000)
@@ -67,7 +67,7 @@ def configure_model(request, model_name, image, base_price):
                    "engines":engines})
 
 def about(request):
-    return render(request, "about.html", {"model":current_model})
+    return render(request, "about.html")
 
 def base(request):
     return render(request, "base.html")
